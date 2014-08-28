@@ -41,7 +41,7 @@ func PingExec(host string, pingDuration int) (PingStatistics, error) {
 		return emptyPing, err
 	}
 
-	<-time.After(time.Second * pingDuration) // ugh... ugly hack
+	<-time.After(time.Second * time.Duration(pingDuration)) // ugh... ugly hack
 
 	err = cmd.Process.Signal(os.Interrupt)
 	if err != nil {
