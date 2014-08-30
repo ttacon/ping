@@ -24,6 +24,20 @@ type PingStatistics struct {
 	PacketLoss      string
 }
 
+// AsMap returns the statistics for a given set of pings as a map of
+// string to string.
+func (p PingStatistics) AsMap() map[string]string {
+	return map[string]string{
+		"roundTripMin":    p.RoundTripMin,
+		"roundTripAvg":    p.RoundTripAvg,
+		"roundTripMax":    p.RoundTripMax,
+		"roundTripStdDev": p.RoundTripStdDev,
+		"packetsSent":     p.PacketsSent,
+		"packetsReceived": p.PacketsReceived,
+		"packetLoss":      p.PacketLoss,
+	}
+}
+
 var emptyPing = PingStatistics{}
 
 // PingExec pings the specifie host for the given number of seconds. It returns
